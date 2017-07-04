@@ -394,6 +394,120 @@ img {
   border-left: 1px solid #666;
 }
 
+.create-form {
+  background: #FFFFFF;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.50);
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.create-form__row {
+  display: flex;
+  margin-top: 20px;
+}
+
+.create-form__row > div {
+  flex: 1;
+}
+
+.create-form__label {
+  flex: 0 0 100px;
+  color: #aaa;
+  font-style: italic;
+  padding: 1px 0;
+  font-weight: 100;
+}
+
+.create-form__label abbr {
+  text-decoration: none;
+  color: red;
+  vertical-align: super;
+  font-size: 80%;
+}
+
+input[type="file"] {
+    position: absolute; left: -99999rem
+}
+
+.create-form__file {
+  cursor: pointer;
+  display: inline-block;
+  background-color: #42767F;
+  color: #fff;
+  border-radius: 3px;
+  padding: 3px 10px;
+  font-style: italic;
+  font-weight: 100;
+}
+
+.create-form__date {
+  display: flex;
+}
+
+.create-form__select-list {
+  height: 100px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+}
+
+.create-form__select-list input {
+  display: none;
+
+}
+
+.create-form__select-list label {
+  display: block;
+  cursor: pointer;
+  padding: 2px 10px;
+}
+
+.create-form__select-list input:checked + label {
+  background-color: #42767F;
+  color: #fff;
+}
+
+.create-form__date > div {
+  flex: 1;
+}
+
+.create-form__date select {
+  border: 1px solid #ddd;
+  padding: 10px 10px;
+  font-size: 1em;
+  display: inline-block;
+  height: 38px;
+  background-color: #fff;
+  border-radius: 0px;
+  -webkit-appearance: none;
+}
+
+.create-form__submit {
+  cursor: pointer;
+  display: inline-block;
+  background-color: #42767F;
+  border: none;
+  font-size: 1.5em;
+  color: #fff;
+  font-style: italic;
+  font-weight: 100;
+  border-radius: 3px;
+  padding: 10px 40px;
+  margin-top: 20px;
+}
+
+.create-form__info {
+  color: #aaa;
+  font-size: 80%;
+  margin-bottom: 10px;
+}
+
+.create-form__input {
+  font-size: 1em;
+  padding: 10px 10px;
+  width: 100%;
+  border: 1px solid #ddd;
+}
+
 .table {
   background: #FFFFFF;
   box-shadow: 0 2px 4px 0 rgba(0,0,0,0.50);
@@ -418,7 +532,7 @@ img {
 }
 
 .table__event:hover {
-  background-color: #ddd;
+  background-color: #eee;
 }
 
 .table__time {
