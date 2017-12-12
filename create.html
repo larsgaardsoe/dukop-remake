@@ -112,21 +112,40 @@
         <label class="create-form__label" for="event_picture">Billede</label>
         <div>
           <label class="create-form__file" for="uploadFile" id="uploadFileLabel">Upload fil</label>
-          <input type="file" name="event[picture]" id="uploadFile" />
+          <input type="file" name="event[picture]" id="uploadFile" accept="image/*" />
+          <img id="uploadFilePreview"/>
           <div class="create-form__info">
             Kun filer af type PNG eller JPEG under 3MB i størrelse accepteres.
           </div>
         </div>
       </div>
+
+<label for="option-input-opera">
+        options example
+    </label>
+    <!-- set the class 'list-focus' and the datalist will be shown on focus -->
+    <input list="options-opera" id="option-input-opera" data-list-focus="true" /> (open on focus behavior)
+    <datalist id="options-opera">
+        <!-- you have to add your option elements inside of a select element for legacy reasons -->
+        <select>
+            <option value="option 1" />
+            <option>option 2</option>
+            <option value="option value 3">option label 3</option>
+            <option value="option value 4" label="option label 4" />
+        </select>
+    </datalist>
+
       <div class="create-form__row"> <label class="create-form__label" for="event_short_description">Beskrivelse <abbr title="påkrævet">*</abbr></label>
-        <div> <textarea class="create-form__input" placeholder="En kort beskrivelse af din begivenhed..." name="event[short_description]" id="event_short_description">
-          </textarea> </div>
+        <div>
+          <textarea class="create-form__input" placeholder="En kort beskrivelse af din begivenhed..." name="event[short_description]" id="event_short_description" ></textarea>
+        </div>
       </div>
       <div class="create-form__row"> <label class="create-form__label">Kategorier <abbr title="påkrævet">*</abbr> </label>
         <div>
           <div class="create-form__select-list" id="selectList"> <input type="checkbox" id="item-1" name="selectList" value="value-1" /> <label for="item-1">Fest</label> <input type="checkbox" id="item-2" name="selectList" value="value-2" /> <label for="item-2">Mad</label> <input type="checkbox" id="item-3"
               name="selectList" value="value-3" /> <label for="item-3">Motion</label> <input type="checkbox" id="item-4" name="selectList" value="value-4" /> <label for="item-4">Workshop</label> <input type="checkbox" id="item-5" name="selectList" value="value-5"
-            /> <label for="item-5">Demo</label> <input type="checkbox" id="item-6" name="selectList" value="value-6" /> <label for="item-6">Møde</label> <input type="checkbox" id="item-7" name="selectList" value="value-7" /> <label for="item-7">Andet</label>            <input type="checkbox" id="item-8" name="selectList" value="value-8" /> <label for="item-8">Film</label> <input type="checkbox" id="item-9" name="selectList" value="value-9" /> <label for="item-9">Aktion</label> <input type="checkbox" id="item-10"
+            /> <label for="item-5">Demo</label> <input type="checkbox" id="item-6" name="selectList" value="value-6" /> <label for="item-6">Møde</label> <input type="checkbox" id="item-7" name="selectList" value="value-7" /> <label for="item-7">Andet</label>
+            <input type="checkbox" id="item-8" name="selectList" value="value-8" /> <label for="item-8">Film</label> <input type="checkbox" id="item-9" name="selectList" value="value-9" /> <label for="item-9">Aktion</label> <input type="checkbox" id="item-10"
               name="selectList" value="value-10" /> <label for="item-10">Radio</label> <input type="checkbox" id="item-11" name="selectList" value="value-11" /> <label for="item-11">Koncert</label> <input type="checkbox" id="item-12" name="selectList" value="value-12"
             /> <label for="item-12">Bustur</label> </div>
         </div>
@@ -145,7 +164,8 @@
             <div id="timeInput" class="create-form__date">
               <div>
                 <div> <label class="create-form__label" for="event_start_time_3i">Start</label> </div>
-                <div> <select id="event_start_time_3i" name="event[start_time(3i)]" class="datetime required form-control">
+                <div>
+                  <select id="event_start_time_3i" name="event[start_time(3i)]" class="datetime required form-control">
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -223,7 +243,8 @@
                     <option value="15">15</option>
                     <option value="30">30</option>
                     <option value="45">45</option>
-                  </select> </div>
+                  </select>
+                </div>
               </div>
               <div>
                 <div> <label class="create-form__label" for="event_start_time_3i">Slut</label> </div>
@@ -482,13 +503,20 @@
 
   var uploadFile = document.getElementById('uploadFile')
   uploadFile.addEventListener('change', function(e) {
-    var file = e.target.value;
-    var filePath = e.target.value.split("\\");
-    var fileName = filePath[filePath.length - 1]
+    // console.log(e.target.files);
+    var fileName = e.target.files[0] ? e.target.files[0].name : null;
     if (fileName) {
       document.getElementById('uploadFileLabel').innerHTML = fileName;
+      var reader = new FileReader();
+      reader.onload = function(){
+        var output = document.getElementById('uploadFilePreview');
+        output.src = reader.result;
+      };
+      reader.readAsDataURL(e.target.files[0]);
     } else {
       document.getElementById('uploadFileLabel').innerHTML = 'Upload fil';
+      var output = document.getElementById('uploadFilePreview');
+      output.src = '';
     }
 
   });
