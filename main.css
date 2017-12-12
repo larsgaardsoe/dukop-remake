@@ -36,6 +36,10 @@ img {
   height: auto;
 }
 
+a {
+  color: #3C8E8C;
+}
+
 .hide {
   display: none;
 }
@@ -294,7 +298,9 @@ img {
   flex: 1;
 }
 
-
+.forget-form {
+  margin: 20px 0;
+}
 
 .title {
   font-style: italic;
